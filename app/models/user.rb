@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :event_creators, foreign_key: :creator_id
+  has_many :events, through: :event_creators, source: :created_event
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
