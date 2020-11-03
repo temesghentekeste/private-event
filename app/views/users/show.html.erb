@@ -1,0 +1,19 @@
+<div class="jumbotron my-4">
+  <h1 class="text-center text-dark font-weight-bolder ">
+    <%= @user.name%> Events
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-5 mx-auto">
+      <% @user.events.each do |event| %>
+        <%= link_to "", class: 'text-decoration-none' do %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class='card-title text-dark mb-1'><%= event.title %></h5>
+              <p class='text-secondary mb-0'><%= event.description %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
