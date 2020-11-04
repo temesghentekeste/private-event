@@ -1,11 +1,45 @@
-<h1 class="text-center mt-5 mb-1">All Events</h1>
-<div class="row">
-  <div class="col-md-3 mx-auto">
-    <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
-  </div>
-</div>
-<div class="container ">
-  <% @events.each do |event|%>
-    <%= render 'event', obj: event%>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mx-auto">
+      <h1 class="text-center mt-5 mb-1">Upcoming Events</h1>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
+        </div>
+      </div>
+      <% @events.all.each do |event|%>
+        <div class="card bg-dark text-white mb-3">
+          <div class="card-body">
+            <h4 class="card-title mb-1"><%= event.title %></h4> 
+            <p class="lead mb-1"><%= event.description %></p> 
+            Hosted by:- <%= event.creator.name%>
+            <div class="card-footer">
+              <%= render_event_actions(event) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-md-5 mx-auto">
+      <h1 class="text-center mt-5 mb-1">Past Events</h1>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
+        </div>
+      </div>
+      <% @events.all.each do |event|%>
+        <div class="card bg-dark text-white mb-3">
+          <div class="card-body">
+            <h4 class="card-title mb-1"><%= event.title %></h4> 
+            <p class="lead mb-1"><%= event.description %></p> 
+            Hosted by:- <%= event.creator.name%>
+            <p>Starts @ <%= event.start_datetime %></p>
+            <div class="card-footer">
+              <%= render_event_actions(event) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 </div>

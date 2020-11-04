@@ -32,7 +32,7 @@ module SiteHelper
     end
   end
 
-  def render_event(event)
+  def render_event_actions(event)
     if user_signed_in? and event.creator == current_user
       render 'shared/creator_render', event: event
     else
