@@ -32,11 +32,11 @@ module SiteHelper
     end
   end
 
-  def post_info(post)
-    if user_signed_in?
-      render 'shared/member_info', post: post
+  def render_event(event)
+    if user_signed_in? and event.creator == current_user
+      render 'shared/creator_render', event: event
     else
-      render 'shared/guest_info', post: post
+      render 'shared/guest_render', event: event
     end
   end
 end

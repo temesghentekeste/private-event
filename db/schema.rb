@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_132806) do
+ActiveRecord::Schema.define(version: 2020_11_04_114845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "event_creators", force: :cascade do |t|
-    t.bigint "created_event_id", null: false
-    t.bigint "creator_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["created_event_id"], name: "index_event_creators_on_created_event_id"
-    t.index ["creator_id"], name: "index_event_creators_on_creator_id"
-  end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -31,6 +22,8 @@ ActiveRecord::Schema.define(version: 2020_11_03_132806) do
     t.datetime "end_datetime"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "creator_id", null: false
+    t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,6 +41,5 @@ ActiveRecord::Schema.define(version: 2020_11_03_132806) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "event_creators", "events", column: "created_event_id"
-  add_foreign_key "event_creators", "users", column: "creator_id"
+  add_foreign_key "events", "users", column: "creator_id"
 end
