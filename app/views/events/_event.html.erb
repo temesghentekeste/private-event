@@ -1,11 +1,53 @@
 <div class="row">
-      <div class="col-md-8 mx-auto card mb-2 bg-dark text-white">
+      <div class="col-md-4 mx-auto card mb-2 bg-dark text-white">
         <div class="card-body">
           <h4 class="card-title mb-1"><%= obj.title %></h4> 
           <p class="lead mb-1"><%= obj.description %></p> 
-           Created by:- <%= obj.creator.name%>
+           Hosted by:- <%= obj.creator.name%>
           <div class="card-footer">
             <%= render_event(obj) %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Invitees
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <ul class="list-group">
+                  <% obj.event_attendees.all.each do |invitee| %>
+                    <li class="list-group-item"><%= invitee.username%></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Attendees
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                <ul class="list-group">
+                  <% obj.event_attendees.all.each do |invitee| %>
+                    <li class="list-group-item"><%= invitee.username%></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
