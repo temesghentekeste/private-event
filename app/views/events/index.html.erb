@@ -7,12 +7,13 @@
           <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
         </div>
       </div>
-      <% @events.all.each do |event|%>
+      <% @events.upcoming.each do |event|%>
         <div class="card bg-dark text-white mb-3">
           <div class="card-body">
             <h4 class="card-title mb-1"><%= event.title %></h4> 
             <p class="lead mb-1"><%= event.description %></p> 
             Hosted by:- <%= event.creator.name%>
+            <p>Starts @ <%= event.start_datetime %></p>
             <div class="card-footer">
               <%= render_event_actions(event) %>
             </div>
@@ -28,7 +29,7 @@
           <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
         </div>
       </div>
-      <% @events.all.each do |event|%>
+      <% @events.past.each do |event|%>
         <div class="card bg-dark text-white mb-3">
           <div class="card-body">
             <h4 class="card-title mb-1"><%= event.title %></h4> 
