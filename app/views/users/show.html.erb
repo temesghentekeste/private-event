@@ -3,8 +3,8 @@
     <%= @user.name%> Events
   </h1>
 </div>
-<div class="row">
-  <div class="col-md-4 mx-auto">
+<div class="row justify-content-center">
+  <div class="col-md-4">
     <h2>Hosted Events</h2>
       <% @user.events.each do |event| %>
         <%= link_to "", class: 'text-decoration-none' do %>
@@ -16,11 +16,11 @@
           </div>
         <% end %>
       <% end %>
-  </div>
+    </div>
 
-   <div class="col-md-4 mx-auto">
-    <h2>Attended Events</h2>
-      <% @user.attended_events.each do |event| %>
+   <div class="col-md-4">
+    <h2>Upcoming Events</h2>
+      <% @user.attended_events.upcoming.each do |event| %>
         <%= link_to "", class: 'text-decoration-none' do %>
           <div class="card mb-3">
             <div class="card-body">
@@ -30,6 +30,20 @@
           </div>
         <% end %>
       <% end %>
-  </div>
+    </div>
+
+     <div class="col-md-4">
+      <h2>Attended Events</h2>
+      <% @user.attended_events.past.each do |event| %>
+        <%= link_to "", class: 'text-decoration-none' do %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class='card-title text-dark mb-1'><%= event.title %></h5>
+              <p class='text-secondary mb-0'><%= event.description %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   
 </div>
