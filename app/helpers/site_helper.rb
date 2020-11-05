@@ -39,4 +39,12 @@ module SiteHelper
       render 'shared/guest_render', event: event
     end
   end
+
+  def browse_resources
+    if user_signed_in?
+      render 'shared/member_resources'
+    else
+      render 'shared/guest_resources'
+    end
+  end
 end

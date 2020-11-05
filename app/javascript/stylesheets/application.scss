@@ -1,5 +1,33 @@
 @import '~bootstrap/scss/bootstrap';
 
+
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
+
+.main-container {
+  min-height: 70vh;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  height: 10vh;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.custom-background, footer {
+  background: rgb(21,19,50);
+  background: linear-gradient(90deg, rgba(21,19,50,1) 20%, rgba(54,96,105,1) 41%, rgba(6,30,52,1) 100%);
+}
+
+.dropdown-item:hover {
+  background: rgb(21,19,50);
+  background: linear-gradient(90deg, rgba(21,19,50,1) 20%, rgba(54,96,105,1) 41%, rgba(6,30,52,1) 100%);
+  color: #fff;
+}
+

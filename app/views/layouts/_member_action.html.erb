@@ -1,5 +1,10 @@
 
-<%= link_to "Member Action I", class: "dropdown-item"%>
+<%= link_to "Create a new Event", new_event_path, class: "dropdown-item"%>
+<div class="dropdown-divider"></div>
+<%= link_to "All Events", events_path, class: "dropdown-item"%>
+<div class="dropdown-divider"></div>
+<%= link_to "All Users", users_path, class: "dropdown-item"%>
+
 <div class="dropdown-divider"></div>
  <%= link_to('Logout',     
         destroy_user_session_path,
