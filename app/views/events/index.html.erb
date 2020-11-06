@@ -7,7 +7,7 @@
           <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
         </div>
       </div>
-      <% @events.upcoming.each do |event|%>
+      <% @upcoming_events.upcoming.each do |event|%>
         <div class="card bg-dark text-white mb-3">
           <div class="card-body">
             <h4 class="card-title mb-1"><%= event.title %></h4> 
@@ -19,7 +19,11 @@
             </div>
           </div>
         </div>
+        
       <% end %>
+        <div class="d-flex justify-content-center">
+          <%= paginate @upcoming_events%>
+        </div>
     </div>
 
     <div class="col-md-5 mx-auto">
@@ -29,7 +33,7 @@
           <hr style="height:2px; width:50%; border-width:0; color:red; background-color:#333">
         </div>
       </div>
-      <% @events.past.each do |event|%>
+      <% @past_events.each do |event|%>
         <div class="card bg-dark text-white mb-3">
           <div class="card-body">
             <h4 class="card-title mb-1"><%= event.title %></h4> 
@@ -42,5 +46,8 @@
           </div>
         </div>
       <% end %>
+      <div class="d-flex justify-content-center">
+            <%= paginate @past_events%>
+      </div>
     </div>
 </div>

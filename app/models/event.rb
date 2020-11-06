@@ -18,4 +18,7 @@ class Event < ApplicationRecord
     attendees = attendees.count > 0 ? attendees : "Currently there are no any attendees"
   end
 
+  paginates_per 2
+
+
 end
