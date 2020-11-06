@@ -19,14 +19,7 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
                 <ul class="list-group">
-                  <% invitees = Event.invitees(obj.id) %>
-                    <% if invitees.is_a? Array %>
-                       <% invitees.each do |invitee| %>
-                        <li class="list-group-item"><%= invitee.username%></li>
-                        <% end %>
-                    <% else %>
-                     <p><%= invitees %></p>
-                    <% end %>
+                  <%= render_invitees obj%>
                 </ul>
               </div>
             </div>
@@ -42,14 +35,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                    <ul class="list-group">
-                  <% attendees = Event.attendees(obj.id) %>
-                    <% if attendees.is_a? Array %>
-                       <% attendees.each do |invitee| %>
-                        <li class="list-group-item"><%= invitee.username%></li>
-                        <% end %>
-                    <% else %>
-                     <p><%= attendees %></p>
-                    <% end %>
+                      <%= render_attendees obj%>
                 </ul>
                 </div>
             </div>
@@ -57,13 +43,8 @@
         </div>
         </div>
         <div class="p-3">
-          <% attendance = EventAttendance.find_by(event_attendee_id: current_user.id, attended_event_id: obj.id) %>
-            
-          <% if attendance && attendance.accepted? %>
-            <%= button_to('Cancel Invitation', invitation_path(id: attendance.id, attended_event_id: obj.id, event_attendee_id: current_user.id), method: :delete, class: 'btn btn-danger btn-block font-weight-bolder ', title: 'Sign In') %>
-          <% else %>
-            <%= button_to('Accept Invitation', invitation_path(id: obj.id), method: :patch, class: 'btn btn-success btn-block font-weight-bolder ', title: 'Sign In') %>
-          <% end %>
+          <%= render_invitation_action obj %>
+          
         </div>
       </div>
 </div>
