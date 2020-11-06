@@ -33,7 +33,9 @@ module SiteHelper
   end
 
   def render_event_actions(event)
-    if user_signed_in? and event.creator == current_user
+    if user_signed_in? and event.start_datetime <  DateTime.now
+      render 'shared/past_due_render', event: event
+    elsif user_signed_in? and event.creator == current_user
       render 'shared/creator_render', event: event
     elsif user_signed_in?
       render 'shared/invitee_render', event: event
@@ -76,14 +78,39 @@ module SiteHelper
   
   def render_invitation_action(obj)
     attendance = EventAttendance.find_by(event_attendee_id: current_user.id, attended_event_id: obj.id)
-    
+
     if obj.start_datetime <  DateTime.now
       render 'events/render_past_due_invitation'
-
+    elsif obj.creator == current_user
+      render 'render_send_invitation', obj: obj
     elsif attendance && attendance.accepted?
       render 'events/render_cancel_invitation', {id: attendance.id, attended_event_id: obj.id, event_attendee_id: current_user.id}
     else attendance && attendance.invited? 
       render 'events/render_accept_invitation', obj: obj
+    end
+  end
+
+  def user_hosted_events(user)
+    if user.events.count > 0
+      render 'user_hosted_events'
+    else
+      render 'no_user_hosted_events'
+    end
+  end
+
+  def user_upcoming_events(user)
+    if user.attended_events.upcoming.count > 0
+      render 'user_upcoming_events'
+    else
+      render 'no_user_upcoming_events'
+    end
+  end
+
+  def user_past_events(user)
+    if user.attended_events.past.count > 0
+      render 'user_past_events'
+    else
+      render 'no_user_past_events'
     end
   end
 end
