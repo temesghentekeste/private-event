@@ -35,8 +35,6 @@ module SiteHelper
   def render_event_actions(event)
     if user_signed_in? and event.creator == current_user
       render 'shared/creator_render', event: event
-    else
-      render 'shared/guest_render', event: event
     end
   end
 
@@ -45,6 +43,14 @@ module SiteHelper
       render 'shared/member_resources'
     else
       render 'shared/guest_resources'
+    end
+  end
+
+  def render_homepage
+    if user_signed_in?
+      render 'shared/member_homepage'
+    else
+      render 'shared/guest_homepage'
     end
   end
 end
