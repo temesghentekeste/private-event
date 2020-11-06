@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_151253) do
+ActiveRecord::Schema.define(version: 2020_11_05_211129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_151253) do
   create_table "event_attendances", force: :cascade do |t|
     t.bigint "event_attendee_id", null: false
     t.bigint "attended_event_id", null: false
+    t.integer "invitation_status"
     t.index ["attended_event_id"], name: "index_event_attendances_on_attended_event_id"
     t.index ["event_attendee_id"], name: "index_event_attendances_on_event_attendee_id"
   end

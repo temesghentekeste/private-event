@@ -5,21 +5,22 @@
     <div class="col-md-7 mx-auto">
       <%= form_for @event do |f| %>
             <div class="form-group">
-                <div class="">
-                    <%= f.text_field :title,  class: "form-control", placeholder: "Event title" %>
-                </div>
+                <label for="title">Event Title</label>
+                <%= f.text_field :title,  class: "form-control", placeholder: "Event title" %>
             </div>
             <div class="form-group">
-                <div class="">
-                    <%= f.text_area :description,rows: 3,  class: "form-control", placeholder: "Event description" %>
-                </div>
+                <label for="description">Event Description</label>
+                <%= f.text_area :description,rows: 3,  class: "form-control", placeholder: "Event description" %>
             </div>
 
             <div class="form-group">
+                <label for="start_datetime" class="d-block py-1">Starts at</label>
                 <%= f.datetime_select :start_datetime,  { class: "form-control" } %>
             </div>
 
             <div class="form-group">
+                <lable class="d-block py-2" for="end_datetime">Ends at</lable>
+
                 <%= f.datetime_select :end_datetime,  { class: "form-control" } %>
             </div>
 

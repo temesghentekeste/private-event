@@ -1,21 +1,16 @@
-<div class="row">
-      <div class="col-md-4 mx-auto card mb-2 bg-dark text-white">
+<div class="row mt-5 card custom-background p-5">
+      <div class="col-md-9 mx-auto card mb-2 m-3">
         <div class="card-body">
-          <h4 class="card-title mb-1"><%= obj.title %></h4> 
+          <h1 class="card-title mb-1 text-center card custom-background  text-white p-2"><%= obj.title %></h1> 
           <p class="lead mb-1"><%= obj.description %></p> 
            Hosted by:- <%= obj.creator.name%>
-          <div class="card-footer">
-            <%= render_event_actions(obj) %>
-          </div>
         </div>
-      </div>
-      
-      <div class="col-md-6">
+        <div class="card-footer text-muted">
         <div class="accordion" id="accordionExample">
           <div class="card">
             <div class="card-header" id="headingOne">
               <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-info btn-block text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Invitees
                 </button>
               </h2>
@@ -24,9 +19,14 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
                 <ul class="list-group">
-                  <% obj.event_attendees.all.each do |invitee| %>
-                    <li class="list-group-item"><%= invitee.username%></li>
-                  <% end %>
+                  <% invitees = Event.invitees(obj.id) %>
+                    <% if invitees.is_a? Array %>
+                       <% invitees.each do |invitee| %>
+                        <li class="list-group-item"><%= invitee.username%></li>
+                        <% end %>
+                    <% else %>
+                     <p><%= invitees %></p>
+                    <% end %>
                 </ul>
               </div>
             </div>
@@ -34,21 +34,36 @@
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="btn btn-dark btn-block text-left collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Attendees
                 </button>
               </h2>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-              <div class="card-body">
-                <ul class="list-group">
-                  <% obj.event_attendees.all.each do |invitee| %>
-                    <li class="list-group-item"><%= invitee.username%></li>
-                  <% end %>
+                <div class="card-body">
+                   <ul class="list-group">
+                  <% attendees = Event.attendees(obj.id) %>
+                    <% if attendees.is_a? Array %>
+                       <% attendees.each do |invitee| %>
+                        <li class="list-group-item"><%= invitee.username%></li>
+                        <% end %>
+                    <% else %>
+                     <p><%= attendees %></p>
+                    <% end %>
                 </ul>
-              </div>
+                </div>
             </div>
           </div>
+        </div>
+        </div>
+        <div class="p-3">
+          <% attendance = EventAttendance.find_by(event_attendee_id: current_user.id, attended_event_id: obj.id) %>
+            
+          <% if attendance && attendance.accepted? %>
+            <%= button_to('Cancel Invitation', invitation_path(id: attendance.id, attended_event_id: obj.id, event_attendee_id: current_user.id), method: :delete, class: 'btn btn-danger btn-block font-weight-bolder ', title: 'Sign In') %>
+          <% else %>
+            <%= button_to('Accept Invitation', invitation_path(id: obj.id), method: :patch, class: 'btn btn-success btn-block font-weight-bolder ', title: 'Sign In') %>
+          <% end %>
         </div>
       </div>
 </div>

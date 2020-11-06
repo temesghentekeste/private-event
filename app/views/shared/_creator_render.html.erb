@@ -1,3 +1,1 @@
-  <%= link_to('View', "#", class: 'btn btn-info', title: 'Sign In') %>
-  <%= link_to('Edit', "#", class: 'btn btn-success', title: 'Sign In') %>
-  <%= link_to('Delete', "#", class: 'btn btn-danger', title: 'Sign In') %>
+  <%= button_to "Invite To", users_path, params: {:attended_event_id   => event.id }, method: :get, class: 'btn btn-info btn-block', title: 'Sign In' %>
