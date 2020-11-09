@@ -3,6 +3,7 @@ require 'rails_helper'
 
 RSpec.describe "Event Model Tests", type: :model  do
   subject { Event.new }
+  
   describe "validations" do
     it "should validate presence of title" do
       subject.description =  'Some description'
@@ -31,5 +32,21 @@ RSpec.describe "Event Model Tests", type: :model  do
     it { should belong_to(:creator).class_name('User') }
     it { should have_many(:event_attendances).class_name("EventAttendance") }
     it { should have_many(:event_attendees).through(:event_attendances) }
+  end
+
+  describe "event scopes" do
+    before(:example) do
+      FactoryBot.create(:user)
+      @past_event = FactoryBot.create(:event, start_datetime: Date.today - 4.weeks, end_datetime: Date.today - 2.weeks)
+      @upcoming_event=FactoryBot.create(:event)
+    end
+
+    it 'returns only past events' do
+      expect(Event.past).to include(@past_event)
+    end
+
+    it 'returns only upcoming events' do
+      expect(Event.past).to include(@upcoming_event)
+    end
   end
 end
