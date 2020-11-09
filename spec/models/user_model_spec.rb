@@ -7,7 +7,7 @@ RSpec.describe "User Model Tests", type: :model  do
   describe "validations" do
     it "should validate presence of name" do
       subject.username =  Faker::Name.name
-      expect(subject.valid?).to be false 
+      expect(subject.valid?).to be false
     end
     it { should validate_presence_of (:name) }
     it { should validate_presence_of (:username) }
