@@ -1,12 +1,10 @@
 class Event < ApplicationRecord
-  validates :title, length: {maximum: 50}
+  validates :title, length: {minimum: 3, maximum: 50}
   validates :title, :description, presence: true
-  validates :description, length: {maximum: 500}
+  validates :description, length: {minimum: 3, maximum: 500}
   validates :start_datetime, :end_datetime, presence: true
 
   validate :end_date_is_after_start_date
-  
-  
   
 
   belongs_to :creator, class_name: 'User'
