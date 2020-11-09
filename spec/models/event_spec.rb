@@ -38,7 +38,7 @@ RSpec.describe "Event Model Tests", type: :model  do
     before(:example) do
       FactoryBot.create(:user)
       @past_event = FactoryBot.create(:event, start_datetime: Date.today - 4.weeks, end_datetime: Date.today - 2.weeks)
-      @upcoming_event=FactoryBot.create(:event)
+      @upcoming_event=FactoryBot.create(:event, end_datetime: Date.today + 4.weeks)
     end
 
     it 'returns only past events' do
@@ -46,7 +46,7 @@ RSpec.describe "Event Model Tests", type: :model  do
     end
 
     it 'returns only upcoming events' do
-      expect(Event.past).to include(@upcoming_event)
+      expect(Event.upcoming).to include(@upcoming_event)
     end
   end
 end
