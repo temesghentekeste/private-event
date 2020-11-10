@@ -1,0 +1,22 @@
+<div class="jumbotron my-4 custom-background text-white">
+  <h1 class="text-center font-weight-bolder ">
+    <%= @user.name.capitalize%>'s Events
+  </h1>
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <h3 class="custom-background text-white p-2 px-3">Hosted Events</h3>
+     <%= user_hosted_events @user %>
+    </div>
+
+   <div class="col-md-4">
+    <h3 class="custom-background text-white p-2 px-3">Upcoming Events</h3>
+     <%= user_upcoming_events @user %>
+    </div>
+
+     <div class="col-md-4">
+      <h3 class="custom-background text-white p-2 px-3">Attended Events</h3>
+      <%= user_past_events @user %>
+    </div>
+  
+</div>
