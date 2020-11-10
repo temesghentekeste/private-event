@@ -1,0 +1,25 @@
+
+<li class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user"></i> <span class="text-white"><%= current_user.name%></span>
+        </a>
+        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "Your Events", user_path(current_user), class: "dropdown-item"%>
+          <div class="dropdown-divider"></div>
+          <%= link_to('Logout', destroy_user_session_path,
+            class: 'dropdown-item', title: 'Logout', :method => :delete) %>
+          <div class="dropdown-divider"></div>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+<li class="mt-3 mt-lg-0 ml-0 ml-lg-3">
+    <%= link_to('Logout',     
+        destroy_user_session_path,
+        class: 'nav-link text-white', title: 'Logout', :method => :delete) %>
+</li>

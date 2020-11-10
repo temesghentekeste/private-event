@@ -1,0 +1,50 @@
+<div class="row mt-5 card custom-background p-5">
+      <div class="col-md-9 mx-auto card mb-2 m-3">
+          <h1 class="card-title my-4 text-center card custom-background  text-white p-2"><%= obj.title %></h1> 
+        <div class="card-body">
+          <p class="lead mb-1"><%= obj.description %></p> 
+           Hosted by:- <%= obj.creator.name%>
+        </div>
+        <div class="card-footer text-muted">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-info btn-block text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Invitees
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <ul class="list-group">
+                  <%= render_invitees obj%>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-dark btn-block text-left collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Attendees
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                   <ul class="list-group">
+                      <%= render_attendees obj%>
+                </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="p-3">
+          <%= render_invitation_action obj %>
+          
+        </div>
+      </div>
+</div>

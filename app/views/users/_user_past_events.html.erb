@@ -1,0 +1,10 @@
+<% @user.attended_events.past.each do |event| %>
+  <%= link_to event_path(event), class: 'text-decoration-none' do %>
+    <div class="card mb-3">
+      <div class="card-body bg-warning">
+        <h5 class='card-title text-dark mb-1'><%= event.title %></h5>
+        <p class='text-secondary mb-0'><%= event.description %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

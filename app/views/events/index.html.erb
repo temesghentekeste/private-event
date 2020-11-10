@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row custom-background text-white px-3 my-5">
+    <div class="col-md-6 mx-auto">
+      <h1 class="text-center mt-5 mb-1">Upcoming Events</h1>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <hr style="height:2px; width:50%; border-width:0; color:white; background-color:#fff">
+        </div>
+      </div>
+      <% @upcoming_events.upcoming.each do |event|%>
+        <div class="card bg-secondary text-white mb-3">
+          <div class="card-body">
+            <h4 class="card-title mb-1"><%= event.title %></h4> 
+            <p class="lead mb-1"><%= event.description %></p> 
+            Hosted by:- <%= event.creator.name%>
+            <p>Starts @ <%= event.start_datetime %></p>
+            <div class="card-footer">
+              <%= render_event_actions(event) %>
+            </div>
+          </div>
+        </div>
+        
+      <% end %>
+        <div class="d-flex justify-content-center">
+          <%= paginate @upcoming_events%>
+        </div>
+    </div>
+
+    <div class="col-md-5 mx-auto">
+      <h1 class="text-center mt-5 mb-1">Past Events</h1>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <hr style="height:2px; width:50%; border-width:0; color:white; background-color:#fff">
+        </div>
+      </div>
+      <% @past_events.each do |event|%>
+        <div class="card bg-dark text-white mb-3">
+          <div class="card-body">
+            <h4 class="card-title mb-1"><%= event.title %></h4> 
+            <p class="lead mb-1"><%= event.description %></p> 
+            Hosted by:- <%= event.creator.name%>
+            <p>Starts @ <%= event.start_datetime %></p>
+            <div class="card-footer">
+              <%= render_event_actions(event) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-center">
+            <%= paginate @past_events%>
+      </div>
+    </div>
+</div>
