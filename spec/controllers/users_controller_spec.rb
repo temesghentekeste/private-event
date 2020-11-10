@@ -1,11 +1,10 @@
 RSpec.describe UsersController, type: :controller do
-
   describe 'GET #index' do
     it 'renders events listing view' do
       @user = FactoryBot.create(:user)
       @event = FactoryBot.create(:event)
-      
-      get :index, params: {attended_event_id: @event.id}
+
+      get :index, params: { attended_event_id: @event.id }
 
       expect(response).to render_template(nil)
       expect(response).to have_http_status(302)

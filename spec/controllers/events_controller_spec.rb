@@ -35,11 +35,11 @@ RSpec.describe EventsController, type: :controller do
         it 'redirects to user sign in page' do
           post :create, params: {
             event: {
-              creator_id: 1, 
+              creator_id: 1,
               title: Faker::Lorem.sentence(word_count: 2),
               description: Faker::Lorem.sentence(word_count: 3),
-              start_datetime:  Date.today,
-              end_datetime: Date.today + 4.weeks 
+              start_datetime: Date.today,
+              end_datetime: Date.today + 4.weeks
             }
           }
           expect(response).to redirect_to(new_user_session_path)
@@ -60,8 +60,8 @@ RSpec.describe EventsController, type: :controller do
             creator_id: @user.id,
             title: Faker::Lorem.sentence(word_count: 2),
             description: Faker::Lorem.sentence(word_count: 3),
-            start_datetime:  Date.today,
-            end_datetime: Date.today + 4.weeks 
+            start_datetime: Date.today,
+            end_datetime: Date.today + 4.weeks
           }
         }
         expect(response).to redirect_to(events_path)
@@ -69,5 +69,4 @@ RSpec.describe EventsController, type: :controller do
       end
     end
   end
-
 end

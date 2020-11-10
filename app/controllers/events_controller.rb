@@ -5,10 +5,9 @@ class EventsController < ApplicationController
     @events = Event.page params[:page]
     @upcoming_events = Event.upcoming.page params[:page]
     @past_events = Event.past.page params[:page]
-
   end
 
-  def show 
+  def show
     @event = Event.find(params[:id])
   end
 
