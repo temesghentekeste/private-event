@@ -23,14 +23,14 @@
               <td><%= user.name %></td>
               <% unless attendance.nil? || attendance.invitation_status == nil %>
                 <td class="has-text-centered">
-                  <span class="tag is-primary is-medium is-light"><%= attendance.invitation_status %><span>
+                  <span class="lead font-weight-bold text-capitalize"><%= attendance.invitation_status %><span>
                 </td>
               <% else %>
                 <td></td>
               <% end %>
               <% if attendance.nil? %>
                 <td class="has-text-centered">
-                  <%= button_to "Send Invitation", invitations_path(event_attendee_id: user.id, attended_event_id: params[:attended_event_id]), class: "btn btn-success btn-sm px-3" %>
+                  <%= button_to "Send Invitation", invitations_path(event_attendee_id: user.id, attended_event_id: params[:attended_event_id]), class: "btn btn-success btn-sm px-3", id: "btn-send-invitation" %>
                 </td>
               <% else %>
                 <td class="has-text-centered">

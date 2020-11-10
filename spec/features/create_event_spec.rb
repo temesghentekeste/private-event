@@ -21,13 +21,14 @@ describe 'Creating a new event' do
     
     expect(current_path).to eq(new_event_path)
     
-    fill_in 'event_title', with: 'Kata Kamp'
-    fill_in 'event_description', with: 'Fun Event'
+    fill_in 'event_title', with: 'JS Virtual Event'
+    fill_in 'event_description', with: 'Code and Fun Event'
     select (Time.now.year + 1).to_s, from: 'event_start_datetime_1i'
     select (Time.now.year + 2).to_s, from: 'event_end_datetime_1i'
     
     click_button 'Create Event'
-    
+
+   
     expect(current_path).to eq(events_path)
     expect(page).to have_text('Upcoming Events')
     expect(page).to have_text('Past Events')
