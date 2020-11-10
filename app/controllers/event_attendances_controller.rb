@@ -32,7 +32,6 @@ class EventAttendancesController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @attendance = EventAttendance.find_by(event_attendee_id: current_user.id, attended_event_id: params[:id])
-    # byebug
     if @attendance&.invited?
       @attendance.accepted!
       flash[:notice] = 'Your have successfully registered.'

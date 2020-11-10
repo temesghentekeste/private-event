@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
   def index
-    # @events = Event.all
     @events = Event.page params[:page]
     @upcoming_events = Event.upcoming.page params[:page]
     @past_events = Event.past.page params[:page]
