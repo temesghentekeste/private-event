@@ -1,7 +1,8 @@
 class EventAttendancesController < ApplicationController
   def create
     event = Event.find(params[:attended_event_id])
-    attendance = EventAttendance.new(event_attendee_id: params[:event_attendee_id], attended_event_id: params[:attended_event_id]) # rubocop:disable Layout/LineLength
+    params = { event_attendee_id: params[:event_attendee_id], attended_event_id: params[:attended_event_id] }
+    attendance = EventAttendance.new(params)
 
     if attendance.save
       attendance.invited!
@@ -34,7 +35,7 @@ class EventAttendancesController < ApplicationController
     # byebug
     if @attendance&.invited?
       @attendance.accepted!
-      flash[:notice] = "Your have successfully registered for the '#{@event.title}' event"
+      flash[:notice] = 'Your have successfully registered.'
     else
       flash[:alert] = 'You need to be invited to perform that action'
     end
