@@ -32,6 +32,9 @@ In this project, signed in user can create a meeting and invite other users to a
 - Ruby (Version: 2.7.1)
 - RSpec
 - Capybara
+- Shoulda Matchers
+- Factory Bot Rails
+- Faker
 - Bootsrap 4.5.x
 - Kaminari gem
 - Devise gem
