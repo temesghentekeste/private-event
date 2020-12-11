@@ -1,7 +1,8 @@
 class EventAttendancesController < ApplicationController
   def create
     event = Event.find(params[:attended_event_id])
-    params = { event_attendee_id: params[:event_attendee_id], attended_event_id: params[:attended_event_id] }
+    # byebug
+    params = request_params
     attendance = EventAttendance.new(params)
 
     if attendance.save
@@ -40,5 +41,10 @@ class EventAttendancesController < ApplicationController
     end
 
     redirect_to event_path(@event)
+  end
+
+  private 
+  def request_params
+    params.permit(:event_attendee_id, :attended_event_id)
   end
 end
